@@ -27,7 +27,11 @@ public class SerializeAndReconstructTree {
 		pres(head,ans);
 		return ans;
 	}
-	
+	/*
+	 * 二叉树可以通过先序、后续或者按层次遍历的方式序列化和反序列化
+	 * 但是，二叉树无法通过中序遍历的方式实现序列化和反序列化
+	 * 因为不同的两棵树，可能得到同样的中序序列，即便补了空位置也可能一样
+	 */
 	public static void pres(Node head, Queue<String> ans) {
 		if(head == null) {
 			ans.add(null);
