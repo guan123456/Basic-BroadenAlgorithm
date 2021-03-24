@@ -18,6 +18,7 @@ public class UnionFind {
 		}
 	}
 
+	//shift + ctrl + F 可以实现快速对齐
 	public static class UnionSet<V> {
 		public HashMap<V, Node<V>> nodes;
 		public HashMap<Node<V>, Node<V>> parents;
