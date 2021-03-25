@@ -76,4 +76,36 @@ public class Knapsack {
 		return Math.max(p1,p2);
 
 	}
+	public static int dpWay(int[] w, int[] v, int bag) {
+		int N = w.length;
+		int[][] dp = new int[N + 1][bag + 1];
+		for (int index = N - 1; index >= 0; index--) {
+			for (int rest = 0; rest <= bag; rest++) { // rest < 0
+				int p1 = dp[index+1][rest];
+				int p2 = -1;
+				if(rest >= w[index]){
+					p2 = v[index] + dp[index+1][rest-w[index]];
+				}
+				dp[index][rest] = Math.max(p1, p2);
+			}
+		}
+		return dp[0][bag];
+	}
+	
+	public static int dpWay2(int[] w, int[] v, int bag) {
+		int N = w.length;
+		int[][] dp = new int[N + 1][bag + 1];
+		// dp[N][...] = 0
+		for (int index = N - 1; index >= 0; index--) {
+
+			for (int rest = 1; rest <= bag; rest++) {
+				
+				dp[index][rest] = dp[index + 1][rest];
+				if (rest >= w[index]) {
+					dp[index][rest] = Math.max(dp[index][rest], v[index] + dp[index + 1][rest - w[index]]);
+				}
+			}
+		}
+		return dp[0][bag];
+	}
 }
